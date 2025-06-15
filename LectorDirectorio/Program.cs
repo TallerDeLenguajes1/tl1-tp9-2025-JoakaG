@@ -31,7 +31,7 @@ do
             nombre = info.Name;
             fechaUltModificacion = info.LastWriteTime;
             System.Console.WriteLine($"  {nombre} | {tamanio} KB");
-            infoarchivos.Add($"{nombre},{tamanio},{fechaUltModificacion.ToString("yyyy-MM-dd HH:mm")}");
+            infoarchivos.Add($"{nombre};{tamanio};{fechaUltModificacion.ToString("yyyy-MM-dd HH:mm")}");
         }
         File.Create($"{path}\\reporte_archivos.csv").Close();
         File.WriteAllLines(Path.Combine(path, "reporte_archivos.csv"), infoarchivos);

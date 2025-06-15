@@ -1,5 +1,5 @@
 ﻿using Id3v1Tagespacio;
-
+using System.Text;
 Console.WriteLine("Ingrese la ruta del archivo MP3:");
 string? path = Console.ReadLine();
 
@@ -12,10 +12,10 @@ if (File.Exists(path))
         MiMP3.Read(buffer, 0, 128);
         var tag = new Id3v1Tag();
 
-        tag.Titulo = System.Text.Encoding.Default.GetString(buffer, 3, 30);
-        tag.Artista = System.Text.Encoding.Default.GetString(buffer, 33, 30);
-        tag.Album = System.Text.Encoding.Default.GetString(buffer, 63, 30);
-        tag.Anio = System.Text.Encoding.Default.GetString(buffer, 93, 4);
+        tag.Titulo = Encoding.Default.GetString(buffer, 3, 30).Trim('\0',' ');
+        tag.Artista = Encoding.Default.GetString(buffer, 33, 30);
+        tag.Album = Encoding.Default.GetString(buffer, 63, 30);
+        tag.Anio = Encoding.Default.GetString(buffer, 93, 4);
         Console.WriteLine($"Título: {tag.Titulo}");
         Console.WriteLine($"Artista: {tag.Artista}");
         Console.WriteLine($"Álbum: {tag.Album}");
